@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table (name = "titulos")
-public class Titulos {
+public class Titulo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int titulo_id;
@@ -16,11 +16,11 @@ public class Titulos {
     @JoinColumn(name="direccion_id")
     private Direccion direccion;
 
-    public Titulos() {
+    public Titulo() {
 
     }
 
-    public Titulos(int h1, int h2, int h3, int h4) {
+    public Titulo(int h1, int h2, int h3, int h4) {
         this.h1 = h1;
         this.h2 = h2;
         this.h3 = h3;
