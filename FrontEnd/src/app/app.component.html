@@ -1,6 +1,14 @@
-<form [formGroup]="direccionForm" (ngSubmit)="guardar()">
-    <div class="formGroup">
-        <label>Direccion</label>
-        <input type="text" formControlName="url" class="form-control">
+<div class="titulo">
+<h3>Metadata.Id</h3>
+</div>
+
+<div class="subsecciones">
+    <h3>Buscador</h3>
+    <div class="formularioURL">
+            <form [formGroup]="direccionForm" (ngSubmit)="guardar()">
+                    <input type="text" formControlName="url" class="form-control" placeholder="url">
+            </form>
+            <button class="css-button-arrow--blue">Analizar</button>
     </div>
-</form>
+    <h3>Informe</h3>
+</div>
