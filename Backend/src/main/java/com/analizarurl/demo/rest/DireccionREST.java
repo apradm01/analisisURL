@@ -2,21 +2,37 @@ package com.analizarurl.demo.rest;
 
 import com.analizarurl.demo.model.Direccion;
 import com.analizarurl.demo.service.DireccionService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/direccion/")
 public class DireccionREST {
 
-    private DireccionService direccionService;
+    private final DireccionService direccionService;
+
+    public DireccionREST(DireccionService direccionService) {
+        this.direccionService = direccionService;
+    }
 
     @GetMapping
     private ResponseEntity<List<Direccion>> getAllDireccion (){
         return ResponseEntity.ok(direccionService.findAll());
     }
+
+    @PostMapping
+    private ResponseEntity<Direccion> saveDireccion (@RequestBody Direccion direccion){
+        try {
+            Direccion direccionGuardada = direccionService.save(direccion);
+            return ResponseEntity.created(new URI("/direccion/" + direccionGuardada.getDireccion_id())).body(direccionGuardada);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+
 }

@@ -20,6 +20,15 @@ public class Direccion {
 
     }
 
+    public Direccion(String url, String title, String description, boolean html5, int images, String createdAt) {
+        this.url = url;
+        this.title = title;
+        this.description = description;
+        this.html5 = html5;
+        this.images = images;
+        this.createdAt = createdAt;
+    }
+
     public int getDireccion_id() {
         return direccion_id;
     }

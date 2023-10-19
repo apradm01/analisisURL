@@ -20,6 +20,13 @@ public class Titulos {
 
     }
 
+    public Titulos(int h1, int h2, int h3, int h4) {
+        this.h1 = h1;
+        this.h2 = h2;
+        this.h3 = h3;
+        this.h4 = h4;
+    }
+
     public int getH1() {
         return h1;
     }
