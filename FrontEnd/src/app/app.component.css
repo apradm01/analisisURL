@@ -15,6 +15,18 @@
     gap: 5px;
 }
 
+.clave{
+    display:flex;
+}
+
+.informeURL{
+    padding:5%;
+}
+
+table td{
+    min-width: 250px;
+}
+
 .form-control{
     border-width: 2px;
 }
