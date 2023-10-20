@@ -29,7 +29,10 @@ export class AppComponent implements OnInit{
   }
 
   guardar():void{
-
+    this.direccionService.saveDireccion(this.direccionForm.value).subscribe(resp=>{
+      
+    },
+    error=>{console.error(error)})
   }
 
 }
