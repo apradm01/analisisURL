@@ -2,10 +2,13 @@ package com.analizarurl.demo.rest;
 
 import com.analizarurl.demo.model.Direccion;
 import com.analizarurl.demo.service.DireccionService;
+import org.htmlunit.WebClient;
+import org.htmlunit.html.HtmlPage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -32,6 +35,21 @@ public class DireccionREST {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }
+
+    private ResponseEntity<Direccion> getURLInfo (String url){
+        WebClient webClient = new WebClient();
+        webClient.getOptions().setCssEnabled(false);
+        webClient.getOptions().setJavaScriptEnabled(false);
+
+        try {
+            HtmlPage page = webClient.getPage(url);
+            //titulo -> page.getTitleText();
+            
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
 
