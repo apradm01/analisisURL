@@ -37,19 +37,26 @@ public class DireccionREST {
         }
     }
 
-    private ResponseEntity<Direccion> getURLInfo (String url){
+    private Direccion getURLInfo (String url){
         WebClient webClient = new WebClient();
         webClient.getOptions().setCssEnabled(false);
         webClient.getOptions().setJavaScriptEnabled(false);
+        Direccion direccion = new Direccion();
+        String rawText;
+        int counter;
 
         try {
             HtmlPage page = webClient.getPage(url);
-            //titulo -> page.getTitleText();
+            direccion.setUrl(url);
+            direccion.setTitle(page.getTitleText());
+            rawText = page.asNormalizedText();
+            
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return direccion;
     }
 
 
