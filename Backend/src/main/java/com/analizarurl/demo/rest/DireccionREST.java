@@ -3,6 +3,7 @@ package com.analizarurl.demo.rest;
 import com.analizarurl.demo.model.Direccion;
 import com.analizarurl.demo.service.DireccionService;
 import org.htmlunit.WebClient;
+import org.htmlunit.html.HtmlDivision;
 import org.htmlunit.html.HtmlPage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,8 @@ public class DireccionREST {
             direccion.setUrl(url);
             direccion.setTitle(page.getTitleText());
             rawText = page.asNormalizedText();
+            List<HtmlDivision> Keywords = page.getByXPath("/html/head/meta[@Name='Keywords']");
+            direccion.setKeywords(Keywords.toString());
 
             for (counter = 0; counter < rawText.length(); counter++){
                 switch(rawText.charAt(counter)){
@@ -77,10 +80,11 @@ public class DireccionREST {
             }
             //Los titulos h1,h2,h3 y h4 aparecen tanto para abrir como cerrar un texto
             //El contador final de los mismos es por ende la mitad de lo que hemos contado
-            h1 = h1/2;
-            h2 = h2/2;
-            h3 = h3/2;
-            h4 = h4/2;
+            direccion.setH1(h1/2);
+            direccion.setH2(h2/2);
+            direccion.setH3(h3/2);
+            direccion.setH4(h4/2);
+            direccion.setImages(images);
 
 
         } catch (IOException e) {
